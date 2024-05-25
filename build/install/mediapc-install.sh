@@ -36,7 +36,7 @@ fi
 msg_info "Tweak VM for performance"
 $STD "{ vm.swappiness=10; vm.vfs_cache_pressure = 50; fs.inotify.max_user_watches=262144 }" >> /etc/systemctl.conf
 
-if [[ "$LAN_SUBNET" != "" ]]; then
+if [[ "$LAN" != "" ]]; then
 msg_info "Turning on UFW (Uncomplicated Firewall)"
 $STD sudo ufw default deny incoming
 $STD sudo ufw default allow outgoing
