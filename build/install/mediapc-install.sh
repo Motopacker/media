@@ -24,15 +24,6 @@ msg_ok "Installed Dependencies"
 msg_info "Setting Up Hardware Acceleration"
 $STD apt-get -y install {va-driver-all,ocl-icd-libopencl1,intel-opencl-icd,vainfo,intel-gpu-tools}
 
-msg_info "Creating user account"
-$STD useradd -u 1000 -m -s /usr/bin/bash "$USERNAME"
-sudo adduser "$USERNAME" sudo
-
-if [[ "$CTTYPE" == "1" ]]; then
- $STD groupadd -g 11000 lxc_gpu_shares
- $STD gpasswd -a "$USERNAME" lxc_gpu_shares
-fi
-
 msg_info "Tweak VM for performance"
 $STD echo "vm.swappiness=10" >> /etc/systemctl.conf
 $STD echo "vm.vfs_cache_pressure = 50" >> /etc/systemctl.conf
@@ -53,26 +44,6 @@ msg_info "Installing Docker and Docker Compose"
 #$STD bash -c "$(curl -fsSL https://get.docker.com -o get-docker.sh)"
 $STD curl -fsSL https://get.docker.com -o get-docker.sh
 $STD sh get-docker.sh
-
-msg_info "Adding user account to docker group"
-$STD sudo adduser "$USERNAME" docker
-
-msg_info "Creating Docker directories if they don't exist and setting permissions"
-#if [ ! -d /home/mlzboy/b2c2/shared/db ]; then
-#  mkdir -p /home/mlzboy/b2c2/shared/db;
-#fi
-
-$STD mkdir -p /home/"$USERNAME"/docker/appdata /home/"$USERNAME"/docker/compose /home/"$USERNAME"/docker/logs /home/"$USERNAME"/docker/scripts /home/"$USERNAME"/docker/secrets /home/"$USERNAME"/docker/shared
-$STD sudo chown root:root /home/"$USERNAME"/docker/secrets
-$STD sudo chmod 600 /home/"$USERNAME"/docker/secrets
-$STD sudo setfacl -Rdm u:xrpilot:rwx /home/"$USERNAME"/docker
-$STD sudo setfacl -Rm u:xrpilot:rwx /home/"$USERNAME"/docker
-$STD sudo setfacl -Rdm g:docker:rwx /home/"$USERNAME"/docker
-$STD sudo setfacl -Rm g:docker:rwx /home/"$USERNAME"/docker
-
-$STD touch /home/"$USERNAME"/docker/.env
-$STD sudo chown root:root /home/"$USERNAME"/docker/.env
-$STD sudo chown 600 /home/"$USERNAME"/docker/.env
 
 motd_ssh
 customize
