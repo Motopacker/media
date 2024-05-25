@@ -40,7 +40,7 @@ if [[ "$LAN_SUBNET" != "" ]]; then
 msg_info "Turning on UFW (Uncomplicated Firewall)"
 $STD sudo ufw default deny incoming
 $STD sudo ufw default allow outgoing
-$STD sudo ufw allow from "$LAN_SUBNET"
+$STD sudo ufw allow from "$LAN"
 $STD ufw enable
 $STD ufw status
 else

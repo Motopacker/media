@@ -575,6 +575,7 @@ build_container() {
   export USERNAME="$USER_NAME"
   export VERBOSE="$VERB"
   export SSH_ROOT="${SSH}"
+  export LAN="$LAN_SUBNET"
   export CTID="$CT_ID"
   export CTTYPE="$CT_TYPE"
   export PCT_OSTYPE="$var_os"
