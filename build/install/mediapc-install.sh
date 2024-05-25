@@ -34,7 +34,9 @@ if [[ "$CTTYPE" == "1" ]]; then
 fi
 
 msg_info "Tweak VM for performance"
-$STD "{ vm.swappiness=10; vm.vfs_cache_pressure = 50; fs.inotify.max_user_watches=262144 }" >> /etc/systemctl.conf
+$STD echo "vm.swappiness=10" >> /etc/systemctl.conf
+$STD echo "vm.vfs_cache_pressure = 50" >> /etc/systemctl.conf
+$STD echo "fs.inotify.max_user_watches=262144" >> /etc/systemctl.conf
 
 if [[ "$LAN" != "" ]]; then
 msg_info "Turning on UFW (Uncomplicated Firewall)"
