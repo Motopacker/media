@@ -280,7 +280,7 @@ advanced_settings() {
     USER_NAME=$(whiptail --backtitle "Proxmox VE Helper Scripts" --inputbox "Enter the non-privellaged user to create in the LXC" 8 58 --title "USERNAME" 3>&1 1>&2 2>&3)
     exit_status=$?
     if [ $exit_status -eq 0 ]; then
-        if [[ "$USER_NAME" =! "" ]]; then
+        if [[ "$USER_NAME" =~ ^([a-z_][a-z0-9_-]*[$]?)$ ]]; then
           echo -e "${DGN}Using username: ${BGN}$USER_NAME${CL}"
           break
         else
