@@ -281,7 +281,7 @@ advanced_settings() {
     exit_status=$?
     if [ $exit_status -eq 0 ]; then
         if [[ "$USER_NAME" =~ ^([a-z_][a-z0-9_-]*[$]?)$ ]]; then
-          echo -e "${DGN}Using username: ${BGN}$USER_NAME${CL}"
+          echo -e "${DGN}Using Username: ${BGN}$USER_NAME${CL}"
           break
         else
           whiptail --backtitle "Proxmox VE Helper Scripts" --msgbox "Username cannot be blank" 8 58
@@ -572,6 +572,7 @@ build_container() {
   export APPLICATION="$APP"
   export app="$NSAPP"
   export PASSWORD="$PW"
+  export USERNAME="$USER_NAME"
   export VERBOSE="$VERB"
   export SSH_ROOT="${SSH}"
   export CTID="$CT_ID"
