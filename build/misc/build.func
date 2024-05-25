@@ -468,25 +468,15 @@ advanced_settings() {
     exit-script
   fi
 
-  while true; do
-    LAN_SUBNET=$(whiptail --backtitle "Proxmox VE Helper Scripts" --inputbox "Enter LAN IPv4 CIDR Subnet for the firewall (/24)" 8 58 --title "LAN SUBNET" 3>&1 1>&2 2>&3)
-    exit_status=$?
-    if [ $exit_status -eq 0 ]; then
-      if [ "$LAN_SUBNET" = "" ]; then
-        echo -e "No LAN network specified. Firewall will not be enabled"
-        break
-      else
-        if [[ "$LAN_SUBNET" =~ ^([0-9]{1,3}\.){3}[0-9]{1,3}/([0-9]|[1-2][0-9]|3[0-2])$ ]]; then
-          echo -e "${DGN}Using Subnet Address: ${BGN}$LAN_SUBNET${CL}"
-          break
-        else
-          whiptail --backtitle "Proxmox VE Helper Scripts" --msgbox "$LAN_SUBNET is an invalid IPv4 CIDR address. Please enter a valid IPv4 CIDR address or leave blank to disable firewall" 8 58
-        fi
-      fi
-    else
-      exit-script
-    fi
-  done
+
+  
+#  if LAN_SUBNET_CIDR=$(whiptail --backtitle "Proxmox VE Helper Scripts" --inputbox "Set APT-Cacher IP (leave blank for default)" 8 58 --title "APT-Cacher IP" 3>&1 1>&2 2>&3); then
+ #     LAN_SUBNET="${LAN_SUBNET_CIDR}"
+  #    echo -e "${DGN}Using APT-Cacher IP Address: ${BGN}${APT_CACHER_IP:-Default}${CL}"
+  #  else
+  #    exit-script
+  #  fi
+  
 
   if (whiptail --backtitle "Proxmox VE Helper Scripts" --title "ADVANCED SETTINGS COMPLETE" --yesno "Ready to create ${APP} LXC?" 10 58); then
     echo -e "${RD}Creating a ${APP} LXC using the above advanced settings${CL}"

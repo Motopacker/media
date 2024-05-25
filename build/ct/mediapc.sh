@@ -50,7 +50,7 @@ function default_settings() {
   VLAN=""
   SSH="yes"
   USER_NAME=""
-  LAN_SUBNET=""
+  LAN_SUBNET="192.168.1.0/24"
   VERB="no"
   echo_default
 }
