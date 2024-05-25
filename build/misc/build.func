@@ -558,9 +558,9 @@ build_container() {
   TEMP_DIR=$(mktemp -d)
   pushd $TEMP_DIR >/dev/null
   if [ "$var_os" == "alpine" ]; then
-    export FUNCTIONS_FILE_PATH="$(curl -s https://raw.githubusercontent.com/tteck/Proxmox/main/misc/alpine-install.func)"
+    export FUNCTIONS_FILE_PATH="$(curl -s https://raw.githubusercontent.com/Motopacker/media/main/build/misc/alpine-install.func)"
   else
-    export FUNCTIONS_FILE_PATH="$(curl -s https://raw.githubusercontent.com/tteck/Proxmox/main/misc/install.func)"
+    export FUNCTIONS_FILE_PATH="$(curl -s https://raw.githubusercontent.com/Motopacker/media/main/build/misc/install.func)"
   fi
   export CACHER="$APT_CACHER"
   export CACHER_IP="$APT_CACHER_IP"
@@ -590,7 +590,7 @@ build_container() {
     $PW
   "
   # This executes create_lxc.sh and creates the container and .conf file
-  bash -c "$(wget -qLO - https://raw.githubusercontent.com/Motopacker/Media/build/ct/create_lxc.sh)" || exit
+  bash -c "$(wget -qLO - https://raw.githubusercontent.com/Motopacker/Media/main/build/ct/create_lxc.sh)" || exit
 
   LXC_CONFIG=/etc/pve/lxc/${CTID}.conf
   if [ "$CT_TYPE" == "0" ]; then
@@ -630,11 +630,8 @@ dev0: /dev/dri/card0,gid=44
 dev1: /dev/dri/renderD128,gid=104
 EOF
 	if [[ "$APP" == "MediaPC" ]]; then 
-    mkdir -p /mnt/docker /mnt/data
-    chown 1000:1000 /mnt/docker -R
-    chown 1000:1000 /mnt/data -R
     grep -qxF 'include “/etc/subuid”’ root:1000:1 || echo 'include “/etc/subuid”’ >> root:1000:1
-    grep -qxF 'include “/etc/subgid”’ root:1000:1 || echo 'include “/etc/subgid”’ >> root:1000:1    
+    grep -qxF 'include “/etc/subgid”’ root:1000:1 || echo 'include “/etc/subgid”’ >> root:1000:1  
           cat <<EOF >>$LXC_CONFIG
 lxc.idmap: u 0 100000 1000
 lxc.idmap: g 0 100000 1000
@@ -671,7 +668,7 @@ http://dl-cdn.alpinelinux.org/alpine/latest-stable/community
 EOF'
     pct exec "$CTID" -- ash -c "apk add bash >/dev/null"
   fi
-  lxc-attach -n "$CTID" -- bash -c "$(wget -qLO - https://raw.githubusercontent.com/Motopacker/Media/build/install/$var_install.sh)" || exit
+  lxc-attach -n "$CTID" -- bash -c "$(wget -qLO - https://raw.githubusercontent.com/Motopacker/Media/main/build/install/$var_install.sh)" || exit
 
 }
 
