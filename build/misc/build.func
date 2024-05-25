@@ -600,8 +600,8 @@ build_container() {
   LXC_CONFIG=/etc/pve/lxc/${CTID}.conf
 
   if [ "$CT_TYPE" == "1" ] && [ "$APP" == "MediaPC" ]; then
-  	grep -qxF 'include “/etc/subuid”’ root:1000:1 || echo 'include “/etc/subuid”’ >> root:1000:1
-	grep -qxF 'include “/etc/subgid”’ root:1000:1 || echo 'include “/etc/subgid”’ >> root:1000:1  
+  	grep -qxF 'include "/etc/subuid"' root:1000:1 || echo 'include "/etc/subuid"' >> root:1000:1
+	grep -qxF 'include "/etc/subgid"' root:1000:1 || echo 'include "/etc/subgid"' >> root:1000:1  
     cat <<EOF >>$LXC_CONFIG
 lxc.idmap: u 0 100000 1000
 lxc.idmap: g 0 100000 1000
