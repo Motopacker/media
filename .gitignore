@@ -1,0 +1,17 @@
+docker/appdata/homepage/bookmarks.yaml
+docker/appdata/homepage/custom.css
+docker/appdata/homepage/custom.js
+docker/appdata/homepage/docker.yaml
+docker/appdata/homepage/kubernetes.yaml
+docker/appdata/homepage/services.yaml
+docker/appdata/homepage/settings.yaml
+docker/appdata/homepage/widgets.yaml
+docker/appdata/homepage/logs/homepage.log
+docker/appdata/portainer/data/portainer.db
+docker/appdata/portainer/data/portainer.key
+docker/appdata/portainer/data/portainer.pub
+docker/appdata/portainer/data/certs/cert.pem
+docker/appdata/portainer/data/certs/key.pem
+docker/appdata/portainer/data/chisel/private-key.pem
+docker/appdata/portainer/data/docker_config/config.json
+.env

@@ -18,6 +18,7 @@ $STD apt-get install -y curl
 $STD apt-get install -y sudo
 $STD apt-get install -y mc
 $STD apt-get install -y net-tools
+$STD apt-get install -y acl
 msg_ok "Installed Dependencies"
 
 msg_info "Setting Up Hardware Acceleration"
@@ -60,6 +61,14 @@ msg_info "Creating Docker directories if they don't exist and setting permission
 $STD mkdir -p /home/"$USER_NAME"/docker/appdata /home/"$USER_NAME"/docker/compose /home/"$USER_NAME"/docker/logs /home/"$USER_NAME"/docker/scripts /home/"$USER_NAME"/docker/secrets /home/"$USER_NAME"/docker/shared
 $STD sudo chown root:root /home/"$USER_NAME"/docker/secrets
 $STD sudo chmod 600 /home/"$USER_NAME"/docker/secrets
+$STD sudo setfacl -Rdm u:xrpilot:rwx /home/"$USER_NAME"/docker
+$STD sudo setfacl -Rm u:xrpilot:rwx /home/"$USER_NAME"/docker
+$STD sudo setfacl -Rdm g:docker:rwx /home/"$USER_NAME"/docker
+$STD sudo setfacl -Rm g:docker:rwx /home/"$USER_NAME"/docker
+
+$STD touch /home/"$USER_NAME"/docker/.env
+$STD sudo chown root:root /home/"$USER_NAME"/docker/.env
+$STD sudo chown 600 /home/"$USER_NAME"/docker/.env
 
 motd_ssh
 customize
