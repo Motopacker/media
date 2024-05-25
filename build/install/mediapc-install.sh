@@ -50,7 +50,9 @@ msg_info "No LAN subnet specified. Skipping firewall setup"
 fi
 
 msg_info "Installing Docker and Docker Compose"
-$STD bash -c "$(curl -fsSL https://get.docker.com -o get-docker.sh)"
+#$STD bash -c "$(curl -fsSL https://get.docker.com -o get-docker.sh)"
+$STD curl -fsSL https://get.docker.com -o get-docker.sh
+$STD sh get-docker.sh
 
 msg_info "Adding user account to docker group"
 $STD sudo adduser "$USERNAME" docker
