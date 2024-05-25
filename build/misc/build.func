@@ -609,7 +609,8 @@ lxc.idmap: u 1000 1000 1
 lxc.idmap: g 1000 1000 1
 lxc.idmap: u 1001 101000 64535
 lxc.idmap: g 1001 101000 64535
-lxc.mount.entry: /mnt/docker mnt/home/$USER_NAME/docker none bind 0 0
+#lxc.mount.entry: /mnt/docker mnt/home/$USER_NAME/docker none bind 0 0
+lxc.mount.entry: /mnt/docker docker none bind 0 0
 lxc.mount.entry: /mnt/data data none bind 0 0
 lxc.cgroup2.devices.allow: c 226:128 rwm
 lxc.mount.entry: /dev/dri/renderD128 dev/dri/renderD128 none bind,optional,create=file
