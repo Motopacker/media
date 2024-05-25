@@ -24,14 +24,14 @@ msg_ok "Installed Dependencies"
 msg_info "Setting Up Hardware Acceleration"
 $STD apt-get -y install {va-driver-all,ocl-icd-libopencl1,intel-opencl-icd,vainfo,intel-gpu-tools}
 
+msg_info "Creating user account"
+$STD useradd -u 1000 -m -s /usr/bin/bash "$USERNAME"
+sudo adduser "$USERNAME" sudo
+
 if [[ "$CTTYPE" == "1" ]]; then
  $STD groupadd -g 11000 lxc_gpu_shares
  $STD gpasswd -a "$USERNAME" lxc_gpu_shares
 fi
-
-msg_info "Creating user account"
-$STD useradd -u 1000 -m -s /usr/bin/bash "$USERNAME"
-sudo adduser "$USERNAME" sudo
 
 msg_info "Tweak VM for performance"
 $STD "{ vm.swappiness=10; vm.vfs_cache_pressure = 50; fs.inotify.max_user_watches=262144 }" >> /etc/systemctl.conf

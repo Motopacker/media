@@ -20,7 +20,7 @@ EOF
 header_info
 echo -e "Loading..."
 APP="MediaPC"
-var_disk="2"
+var_disk="10"
 var_cpu="2"
 var_ram="2048"
 var_os="ubuntu"
@@ -31,7 +31,7 @@ catch_errors
 
 function default_settings() {
   CT_TYPE="1"
-  PW=""
+  PW="password"
   CT_ID=$NEXTID
   HN=$NSAPP
   DISK_SIZE="$var_disk"
@@ -49,7 +49,7 @@ function default_settings() {
   MAC=""
   VLAN=""
   SSH="yes"
-  USER_NAME=""
+  USER_NAME="user"
   LAN_SUBNET="192.168.1.0/24"
   VERB="no"
   echo_default
