@@ -676,7 +676,7 @@ EOF'
     pct exec "$CTID" -- ash -c "apk add bash >/dev/null"
   fi
   lxc-attach -n "$CTID" -- bash -c "$(wget -qLO - https://raw.githubusercontent.com/Motopacker/Media/main/build/install/$var_install.sh)" || exit
-
+   
 }
 
 # This function sets the description of the container.
