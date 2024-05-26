@@ -44,6 +44,9 @@ msg_info "Installing Docker and Docker Compose"
 $STD curl -fsSL https://get.docker.com -o get-docker.sh
 $STD sh get-docker.sh
 
+msg_info "Cloning Docker Repo"
+$STD wget -O - https://github.com/Motopacker/docker/archive/master.tar.gz | tar xz -C "$DOCKER_DIRECTORY" --strip-components 1
+
 motd_ssh
 customize
 
