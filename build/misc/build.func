@@ -296,7 +296,7 @@ advanced_settings() {
     DOCKERDIR=$(whiptail --backtitle "Proxmox VE Helper Scripts" --inputbox "Enter the location of the Docker directory on the PVE host" 8 58 $var_dockerdir --title "DOCKER DIRECTORY" 3>&1 1>&2 2>&3)
     exit_status=$?
     if [ $exit_status -eq 0 ]; then
-        if [[ "$DOCKERDIR" =~ ^(/|(/[\w-]+)+$)$ ]]; then
+        if [[ "$DOCKERDIR" =~ ^/|(/[\w-]+)+$ ]]; then
           echo -e "${DGN}Using Docker Directory: ${BGN}$DOCKERDIR${CL}"
           break
         else
