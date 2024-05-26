@@ -276,21 +276,6 @@ advanced_settings() {
   else
     exit-script
   fi
-  
-  while true; do
-    USER_NAME=$(whiptail --backtitle "Proxmox VE Helper Scripts" --inputbox "Enter the non-privellaged user to create in the LXC" 8 58 --title "USERNAME" 3>&1 1>&2 2>&3)
-    exit_status=$?
-    if [ $exit_status -eq 0 ]; then
-        if [[ "$USER_NAME" =~ ^([a-z_][a-z0-9_-]*[$]?)$ ]]; then
-          echo -e "${DGN}Using Username: ${BGN}$USER_NAME${CL}"
-          break
-        else
-          whiptail --backtitle "Proxmox VE Helper Scripts" --msgbox "Username cannot be blank" 8 58
-        fi
-    else
-      exit-script
-    fi
-  done    
 
    while true; do
     DOCKERDIR=$(whiptail --backtitle "Proxmox VE Helper Scripts" --inputbox "Enter the location of the Docker directory on the PVE host" 8 58 $var_dockerdir --title "DOCKER DIRECTORY" 3>&1 1>&2 2>&3)
@@ -588,7 +573,6 @@ build_container() {
   export APPLICATION="$APP"
   export app="$NSAPP"
   export PASSWORD="$PW"
-  #export USERNAME="$USER_NAME"
   export VERBOSE="$VERB"
   export SSH_ROOT="${SSH}"
   export LAN="$LAN_SUBNET"

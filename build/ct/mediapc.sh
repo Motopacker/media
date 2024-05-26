@@ -52,7 +52,6 @@ function default_settings() {
   MAC=""
   VLAN=""
   SSH="yes"
-  USER_NAME="user"
   LAN_SUBNET="$var_lansubnet"
   VERB="no"
   echo_default
