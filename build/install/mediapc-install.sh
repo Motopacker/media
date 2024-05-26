@@ -41,11 +41,11 @@ msg_info "No LAN subnet specified. Skipping firewall setup"
 fi
 
 msg_info "Installing Docker and Docker Compose"
-$STD curl -fsSL https://get.docker.com -o get-docker.sh
-$STD sh get-docker.sh
+$STD curl -fsSL https://get.docker.com -o /tmp/get-docker.sh
+$STD sh /tmp/get-docker.sh
 
 msg_info "Cloning Docker Repo"
-$STD wget -O - https://github.com/Motopacker/docker/archive/master.tar.gz | tar xz -C "$DOCKER_DIRECTORY" --strip-components 1
+$STD wget -O - https://github.com/Motopacker/docker/archive/master.tar.gz | tar xz -C "$DOCDIR" --strip-components 1
 
 motd_ssh
 customize
