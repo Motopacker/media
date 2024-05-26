@@ -605,7 +605,7 @@ build_container() {
 lxc.cgroup2.devices.allow: c 226:128 rwm
 lxc.mount.entry: /dev/dri/renderD128 dev/dri/renderD128 none bind,optional,create=file
 lxc.mount.entry: $DOCKERDIR mnt/docker none bind,optional,create=dir 0 0
-lxc.hook.pre-start: sh -c "chown 100000:111000 /dev/dri/renderD128"
+lxc.hook.pre-start: sh -c "chown 100000:100999 /dev/dri/renderD128"
 lxc.hook.pre-start: sh -c "mkdir -p "$DOCKERDIR"/appdata "$DOCKERDIR"/compose "$DOCKERDIR"/logs "$DOCKERDIR"/secrets "$DOCKERDIR"/scripts "$DOCKERDIR"/shared"
 lxc.hook.pre-start: sh -c "touch "$DOCKERDIR"/.env"
 lxc.hook.pre-start: sh -c "chown -R 100000:100000 "$DOCKERDIR"/.env "$DOCKERDIR"/secrets"
