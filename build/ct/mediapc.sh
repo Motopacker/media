@@ -25,6 +25,8 @@ var_cpu="2"
 var_ram="2048"
 var_os="ubuntu"
 var_version="22.04"
+var_dockerdir="/mnt/docker"
+var_lansubnet="192.168.1.0/24"
 variables
 color
 catch_errors
@@ -37,6 +39,7 @@ function default_settings() {
   DISK_SIZE="$var_disk"
   CORE_COUNT="$var_cpu"
   RAM_SIZE="$var_ram"
+  DOCKERDIR="var_dockerdir"
   BRG="vmbr0"
   NET="dhcp"
   GATE=""
@@ -50,7 +53,7 @@ function default_settings() {
   VLAN=""
   SSH="yes"
   USER_NAME="user"
-  LAN_SUBNET="192.168.1.0/24"
+  LAN_SUBNET="$var_lansubnet"
   VERB="no"
   echo_default
 }
