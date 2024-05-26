@@ -45,7 +45,8 @@ $STD curl -fsSL https://get.docker.com -o /tmp/get-docker.sh
 $STD sh /tmp/get-docker.sh
 
 msg_info "Cloning Docker Repo"
-$STD wget -O - https://github.com/Motopacker/docker/archive/master.tar.gz | tar xz -C "$DOCDIR" --strip-components 1
+#$STD wget -O - https://github.com/Motopacker/docker/archive/master.tar.gz | tar xz -C "$DOCDIR" --strip-components 1
+wget -O - https://github.com/Motopacker/docker/archive/master.tar.gz | tar xz -C "$DOCDIR" --strip-components 1
 
 motd_ssh
 customize
